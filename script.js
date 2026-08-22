@@ -524,7 +524,8 @@
     if (cell.count > 0) {
 
       button.textContent = cell.count;
-
+      checkWin();
+      
       return;
     }
 
@@ -563,21 +564,21 @@
       cell => cell.mine || cell.opened
     );
 
-    if (cleared) {
-      gameOver = true;
+    if (!cleared) return;
 
-      cells.forEach((cell, i) => {
-        if (cell.mine) {
-          buttons[i].textContent = "⚑";
-          buttons[i].classList.add("flag");
-        }
-      });
+    gameOver = true;
 
-      resetButton.textContent = "😎";
-
-      if (counter) {
-        counter.textContent = "Mines: 000";
+    cells.forEach((cell, i) => {
+      if (cell.mine) {
+        buttons[i].textContent = "💣";
+        buttons[i].classList.add("mine");
       }
+    });
+
+    resetButton.textContent = "😎";
+
+    if (counter) {
+      counter.textContent = "Mines: 000";
     }
   }
 
