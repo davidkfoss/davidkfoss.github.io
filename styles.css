@@ -1,0 +1,360 @@
+* { box-sizing: border-box; }
+
+:root{
+  --xp-blue:#245edb;
+  --xp-blue-dark:#0b3aa4;
+  --xp-green:#3ca72c;
+  --window-border:#0b3b9f;
+  --cream:#ece9d8;
+  --panel:#f6f5ed;
+  --text:#111;
+}
+
+html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:Tahoma,Arial,sans-serif;font-size:12px;color:var(--text);}
+button,input{font:inherit}
+
+.boot-screen{
+  position:fixed;inset:0;z-index:99999;
+  display:grid;place-items:center;
+  background:linear-gradient(#6d91da,#3a6cc7 35%,#2e63c0 70%,#517ed0);
+  color:#fff;
+}
+.boot-screen.hidden{display:none}
+.boot-card{text-align:center}
+.xp-logo{width:72px;height:72px;margin:0 auto 18px;display:grid;grid-template-columns:1fr 1fr;gap:3px;transform:skewY(-7deg)}
+.xp-logo span:nth-child(1){background:#f34a37}.xp-logo span:nth-child(2){background:#6fbf39}.xp-logo span:nth-child(3){background:#39a7e8}.xp-logo span:nth-child(4){background:#f7cf38}
+.boot-name{font-size:28px;font-weight:bold;text-shadow:0 2px 2px #1c4e9c;margin-bottom:18px}
+#boot-button{padding:10px 22px;border:2px outset #fff;border-radius:3px;background:#f3f3e8;color:#154289;font-weight:bold}
+.boot-hint{margin-top:18px;font-size:11px;opacity:.8}
+
+.desktop{
+  position:relative;width:100%;height:100%;
+  background:
+    radial-gradient(circle at 72% 28%,rgba(255,255,255,.35),transparent 14%),
+    linear-gradient(165deg,#6cc9ff 0%,#4ba4e8 38%,#98d149 39%,#67b432 60%,#3e8e27 100%);
+}
+.desktop::after{
+  content:"";position:absolute;left:-6%;right:-5%;bottom:42px;height:45%;
+  background:
+    radial-gradient(ellipse at 15% 100%,#2f7f1e 0 42%,transparent 43%),
+    radial-gradient(ellipse at 48% 100%,#59a62e 0 45%,transparent 46%),
+    radial-gradient(ellipse at 78% 100%,#2c7f22 0 47%,transparent 48%);
+  opacity:.55;pointer-events:none;
+}
+
+.desktop-icons{
+  position:absolute;z-index:3;top:18px;left:16px;
+  display:grid;grid-template-columns:86px;gap:8px;
+}
+.desktop-icon{
+  width:84px;min-height:72px;border:1px solid transparent;background:transparent;color:#fff;
+  display:flex;flex-direction:column;align-items:center;gap:5px;padding:4px;
+  text-shadow:1px 1px 2px #000;cursor:default;
+}
+.desktop-icon:hover,.desktop-icon:focus-visible{background:rgba(40,95,180,.35);border:1px dotted rgba(255,255,255,.75);outline:none}
+.icon{width:38px;height:38px;display:grid;place-items:center;font-weight:bold}
+.folder{background:linear-gradient(#ffd45c,#e9a91c);border:1px solid #9d7114;border-radius:2px;box-shadow:inset 0 5px #ffe79b}
+.briefcase{background:#8a5c33;border:2px solid #5a3517;border-radius:3px;position:relative}.briefcase::before{content:"";position:absolute;top:-8px;width:18px;height:9px;border:3px solid #5a3517;border-bottom:0}
+.research-icon{background:linear-gradient(#f8f8f8,#d8d8d8);border:1px solid #777;color:#1b59a8}.research-icon::after{content:"Σ";font:700 24px Georgia}
+.ie{
+  position:relative;
+  font:italic 700 38px Georgia;
+  color:#2f83df;
+  text-shadow:0 1px 1px rgba(255,255,255,.5);
+}
+.ie::before{
+  content:"e";
+  position:absolute;
+  left:8px;
+  top:-4px;
+  font:italic 700 40px Georgia;
+  color:#2f83df;
+  z-index:2;
+}
+.ie::after{
+  content:"";
+  position:absolute;
+  left:2px;
+  top:14px;
+  width:38px;
+  height:12px;
+  border:4px solid #f0c431;
+  border-left-color:transparent;
+  border-right-color:transparent;
+  border-radius:50%;
+  transform:rotate(-22deg);
+  z-index:1;
+}
+.terminal-icon{background:#111;color:#d7d7d7;border:2px solid #aaa;font:700 15px "Courier New"}
+.winamp-icon{background:#2c2c2c;color:#f7d400;border:2px ridge #777;font-size:24px}
+.recycle-icon{font-size:30px;text-shadow:none}
+
+.desktop-caption{position:absolute;z-index:2;right:36px;top:36px;text-align:right;color:white;text-shadow:0 1px 3px #1e5a88}
+.caption-title{font-size:30px;font-weight:bold}.caption-sub{font-size:12px;margin-top:3px}
+
+.window-layer{position:absolute;z-index:10;inset:0 0 40px 0;pointer-events:none}
+.window{
+  position:absolute;left:var(--x);top:var(--y);width:min(var(--w),calc(100vw - 28px));max-height:calc(100vh - 70px);
+  display:none;flex-direction:column;
+  background:var(--cream);border:3px solid var(--window-border);border-radius:7px 7px 2px 2px;
+  box-shadow:3px 5px 14px rgba(0,0,0,.35);pointer-events:auto;overflow:hidden;
+}
+.window.open{display:flex}
+.window.maximized{left:2px!important;top:2px!important;width:calc(100vw - 4px)!important;height:calc(100vh - 44px)!important;max-height:none}
+.window.minimized{display:none}
+.window.active{z-index:100}
+.small-window{min-height:300px}
+.titlebar{
+  min-height:28px;padding:3px 4px 3px 7px;
+  display:flex;align-items:center;justify-content:space-between;
+  color:#fff;background:linear-gradient(#3d8af6,#1761d1 45%,#0d4db7 50%,#245edb);
+  font-weight:bold;text-shadow:1px 1px #15408b;user-select:none;
+}
+.window:not(.active) .titlebar{background:linear-gradient(#9fb8db,#7894bc)}
+.drag-handle{cursor:move}
+.title-left{display:flex;align-items:center;gap:6px;min-width:0}
+.tiny-folder{width:15px;height:12px;background:#f3c552;border:1px solid #8c6717;display:inline-block}
+.window-controls{display:flex;gap:2px}
+.window-controls button,.winamp-title button{
+  width:22px;height:21px;padding:0;line-height:17px;border:1px solid #fff;border-radius:3px;
+  background:linear-gradient(#6ba4ff,#1c63cf);color:#fff;font-weight:bold;cursor:default;
+}
+.window-controls button:last-child{background:linear-gradient(#f28d75,#d7452a)}
+.menubar{height:24px;padding:4px 7px;background:#f3f0e3;border-bottom:1px solid #c9c5b5;display:flex;gap:18px}
+.toolbar{padding:5px 7px;background:#eeeade;border-bottom:1px solid #c5c1b3;display:flex;gap:5px}
+.toolbar button,.browser-toolbar button{border:0;background:transparent;padding:3px 8px;color:#222}
+.addressbar{display:flex;align-items:center;gap:6px;padding:4px 6px;background:#efeddf;border-bottom:1px solid #bbb6a5}
+.addressbar>span{color:#666}
+.addressbar>div{flex:1;min-height:22px;background:#fff;border:1px inset #aaa;padding:3px 6px;white-space:nowrap;overflow:hidden}
+.addressbar>button,.xp-button{padding:3px 10px;border:1px outset #ddd;background:#ece9d8}
+.statusbar{min-height:20px;padding:3px 6px;background:#ece9d8;border-top:1px solid #c7c3b3;color:#555}
+
+.explorer-body{display:grid;grid-template-columns:190px 1fr;min-height:360px;overflow:auto}
+.explorer-sidebar{padding:10px;background:linear-gradient(#7ba1e7,#c5d7f4)}
+.side-card{background:#f7f7fb;border:1px solid #8fa9d2;border-radius:5px;margin-bottom:10px;overflow:hidden}
+.side-card h4{margin:0;padding:6px 8px;background:linear-gradient(#fff,#dce7f8);color:#2456a4}
+.side-card a{display:block;padding:4px 8px;color:#164da5;text-decoration:none}.side-card a:hover{text-decoration:underline}
+.file-grid{padding:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:18px;align-content:start;background:#fff}
+.file-item{background:transparent;border:1px solid transparent;display:grid;justify-items:center;gap:4px;padding:6px;text-align:center}
+.file-item:hover{background:#e6effc;border:1px dotted #7f9db9}
+.file-icon{width:46px;height:46px;display:grid;place-items:center}
+.file-icon.folder{background:linear-gradient(#ffd35f,#e2a31f);border:1px solid #9d7114}
+.file-icon.doc::before{content:"TXT";display:grid;place-items:center;width:34px;height:42px;background:#fff;border:1px solid #777;color:#2460b3;font-size:10px}
+.file-icon.gear::before{content:"⚙";font-size:34px;color:#777}
+.file-item small{color:#777}
+
+.notepad{background:#fff;white-space:pre-wrap;font:13px/1.55 "Lucida Console","Courier New",monospace;padding:12px;min-height:360px;overflow:auto}
+.notepad.ini{color:#173b77}
+
+.folder-list{background:#fff;overflow:auto;min-height:300px}
+.detail-row{display:grid;grid-template-columns:1fr 1.2fr 2fr;gap:8px;padding:7px 10px;border-bottom:1px solid #eee;align-items:start}
+.header-row{background:#f3f3f3;border-bottom:1px solid #cfcfcf;font-weight:bold;color:#555}
+.work-row:hover,.detail-row:not(.header-row):hover{background:#e9f1fd}
+
+.research-pane{display:grid;grid-template-columns:230px 1fr;background:#fff;min-height:390px}
+.research-left{padding:28px 20px;background:linear-gradient(#eef4ff,#d8e6fb);border-right:1px solid #aac0dd;text-align:center}
+.big-file-icon.pdf{width:82px;height:96px;margin:0 auto 13px;display:grid;place-items:center;background:white;border:1px solid #999;color:#d12626;font-size:22px;font-weight:bold;box-shadow:2px 2px 5px #aaa}
+.research-left h3{margin:7px 0;font-size:13px}.research-left p{color:#666}.meta-line{margin-top:20px;color:#555}
+.research-content{padding:28px;overflow:auto}
+.file-heading{font-size:20px;color:#173f7a;margin-bottom:16px}.research-content p{line-height:1.55;color:#333}
+.properties{margin:24px 0;border-top:1px solid #ddd}.properties div{display:grid;grid-template-columns:120px 1fr;padding:7px;border-bottom:1px solid #eee}.properties dt{color:#666}.properties dd{margin:0}
+
+.browser-toolbar{padding:5px 7px;background:#ece9d8;border-bottom:1px solid #c1bdaf;display:flex;gap:4px}
+.webpage{flex:1;min-height:390px;background:white;padding:18px;font-family:"Times New Roman",serif;font-size:15px;overflow:auto}
+.old-web-header{display:flex;justify-content:space-between;align-items:end}.old-web-logo{font:bold 30px Arial;color:#003399}
+.old-web-nav{margin-top:10px}.webpage a{color:#0000ee}.old-table{border-collapse:collapse;margin:18px 0;font-family:Arial;font-size:12px}.old-table th,.old-table td{border:1px solid #777;padding:5px 12px}
+.visitor-counter{display:inline-block;background:#000;color:#0f0;font-family:"Courier New";padding:4px 7px;margin-top:15px}
+.under-construction{margin-top:28px;font:12px Arial;color:#cc0000}
+
+.terminal-window{background:#000;border-color:#222;border-radius:2px}
+.terminal-title{background:linear-gradient(#444,#222)!important;color:#fff;text-shadow:none}
+.cmd-body{
+  flex:1;
+  min-height:350px;
+  max-height:520px;
+  overflow:auto;
+  background:#000;
+  color:#ddd;
+  padding:10px;
+  font:13px/1.4 "Lucida Console","Courier New",monospace;
+  white-space:pre-wrap;
+}
+#cmd-history{white-space:pre-wrap}
+.cmd-line{display:flex;align-items:baseline;white-space:pre-wrap}
+.cmd-prompt,#cmd-typed{white-space:pre}
+.cmd-input{position:absolute;opacity:0;pointer-events:none}
+.cmd-caret{animation:blink .8s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+.winamp-window{border:2px ridge #777;background:#222;border-radius:0;color:#ddd}
+.winamp-title{height:22px;padding:2px 5px;background:linear-gradient(90deg,#202052,#565685,#202052);display:flex;align-items:center;justify-content:space-between;color:#ddd;font:700 10px Arial;letter-spacing:1px}
+.winamp-title button{width:16px;height:16px;border-radius:0;font-size:10px;line-height:10px}
+.winamp-display{margin:6px;background:#071208;border:2px inset #444;padding:7px;color:#68ff57;font-family:"Courier New",monospace}
+.track-time{font-size:22px}.track-title{white-space:nowrap;overflow:hidden;margin:3px 0 6px}
+.spectrum{height:35px;display:flex;align-items:end;gap:2px}.spectrum i{width:8%;background:#60df53;animation:eq 1s ease-in-out infinite alternate}.spectrum i:nth-child(2n){animation-delay:.2s}.spectrum i:nth-child(3n){animation-delay:.4s}
+@keyframes eq{from{height:15%}to{height:90%}}
+.winamp-buttons{display:flex;gap:4px;padding:4px 7px}.winamp-buttons button{background:#b8b8b8;border:2px outset #ddd;color:#111}
+.playlist{background:#080808;border-top:2px ridge #444;padding:4px;display:grid}.track{background:#080808;color:#6be05f;border:0;text-align:left;padding:3px 5px;font:11px "Courier New"}.track.selected{background:#1a356b;color:#fff}
+
+.msn-toast{position:absolute;z-index:500;right:12px;bottom:51px;width:260px;border:1px solid #164a9c;background:#fff;box-shadow:2px 3px 7px rgba(0,0,0,.3);transform:translateY(140%);transition:transform .35s ease}
+.msn-toast.show{transform:translateY(0)}
+.msn-head{padding:4px 7px;color:#fff;background:linear-gradient(#6aa6f6,#2866bd);font-weight:bold}
+.msn-body{display:flex;gap:9px;align-items:center;padding:10px;background:linear-gradient(#fff,#e8f2ff)}
+.msn-avatar{width:36px;height:36px;border:1px solid #7da4ce;background:#d9ebff;display:grid;place-items:center;color:#22509a;font-weight:bold}
+
+.taskbar{position:absolute;z-index:1000;left:0;right:0;bottom:0;height:40px;background:linear-gradient(#3c85ef,#1762cc 12%,#1a59c0 70%,#114aa8);display:flex;align-items:center;color:#fff}
+.start-button{height:40px;min-width:106px;border:0;border-radius:0 16px 16px 0;background:linear-gradient(#63c454,#2f9c27 50%,#167216);color:#fff;font-size:18px;font-weight:bold;font-style:italic;text-shadow:1px 1px #1b5b17;display:flex;align-items:center;gap:7px;padding:0 16px 0 10px}
+.windows-mark{width:19px;height:19px;display:grid;grid-template-columns:1fr 1fr;gap:1px;transform:skewY(-6deg)}.windows-mark i:nth-child(1){background:#f34a37}.windows-mark i:nth-child(2){background:#6fbf39}.windows-mark i:nth-child(3){background:#39a7e8}.windows-mark i:nth-child(4){background:#f7cf38}
+.task-buttons{flex:1;display:flex;gap:3px;padding:0 7px;overflow:hidden}
+.task-button{height:30px;min-width:130px;max-width:210px;border:1px solid #0e3f96;background:linear-gradient(#4b8ff0,#2a6cd0);color:white;text-align:left;padding:4px 9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:inset 1px 1px rgba(255,255,255,.25)}
+.task-button.active{background:linear-gradient(#1b4f9d,#3575c8);border-style:inset}
+.tray{height:40px;padding:0 12px;display:flex;align-items:center;gap:8px;background:linear-gradient(#29a9df,#1688c2);border-left:1px solid #0a4d92}#task-clock{min-width:40px}
+
+.start-menu{position:absolute;z-index:1100;left:0;bottom:40px;width:390px;display:none;border:2px solid #134aa4;border-radius:6px 6px 0 0;background:#fff;box-shadow:2px 2px 8px rgba(0,0,0,.35);overflow:hidden}
+.start-menu.open{display:block}
+.start-user{height:62px;padding:8px 12px;display:flex;align-items:center;gap:10px;background:linear-gradient(#4b91e8,#2767bb);color:#fff;font-size:15px}
+.user-avatar{width:44px;height:44px;background:linear-gradient(#fff,#c7e0ff);border:2px solid #fff;border-radius:4px;color:#245ea8;display:grid;place-items:center;font-weight:bold}
+.start-content{display:grid;grid-template-columns:1.15fr .85fr;min-height:330px}.start-left,.start-right{padding:8px}.start-right{background:#dbe8f8;border-left:1px solid #a7bddc}
+.start-content button{width:100%;border:0;background:transparent;text-align:left;padding:7px;display:flex;align-items:center;gap:8px}.start-content button:hover{background:#2f72cc;color:#fff}
+.start-left button div{display:grid}.start-left small{color:#777}.start-left button:hover small{color:#eaf2ff}
+.start-icon{width:31px;height:31px;display:grid;place-items:center;font-size:22px}.start-icon.ie{font-size:29px}.start-icon.cmd{background:#111;color:#eee;font:700 11px "Courier New"}
+.start-separator{height:1px;background:#bbb;margin:5px}
+.start-footer{height:48px;background:linear-gradient(#4b91e8,#2767bb);display:flex;justify-content:end;align-items:center;gap:10px;padding:7px}.start-footer button{color:#fff;background:transparent;border:0}
+
+@media(max-width:760px){
+  .desktop-caption{display:none}
+  .window{left:8px!important;top:8px!important;width:calc(100vw - 16px)!important;max-height:calc(100vh - 56px)}
+  .explorer-body{grid-template-columns:1fr}.explorer-sidebar{display:none}
+  .research-pane{grid-template-columns:1fr}.research-left{display:none}
+  .detail-row{grid-template-columns:1fr}.detail-row span:not(:first-child){font-size:11px;color:#666}
+  .start-menu{width:min(390px,100vw)}
+}
+
+.start-icon.ie{
+  position:relative;
+  color:#2f83df;
+  font:italic 700 29px Georgia;
+  text-shadow:none;
+}
+.start-icon.ie::before,
+.start-icon.ie::after{
+  content:none;
+}
+
+.desktop-icon .mine-icon {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  font-size: 38px;
+}
+
+/* =========================
+   Minesweeper XP Styling
+   ========================= */
+
+#minesweeper {
+  height: auto;
+  min-height: 0;
+}
+
+#minesweeper .mine-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: #c0c0c0;
+  padding: 12px;
+  color: #000;
+}
+
+#minesweeper .mine-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: #c0c0c0;
+  border: 3px inset #ffffff;
+
+  padding: 6px;
+  margin-bottom: 10px;
+
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+#minesweeper #mine-board {
+  display: grid;
+
+  grid-template-columns: repeat(10, 30px);
+  grid-template-rows: repeat(10, 30px);
+
+  gap: 0;
+
+  border: 3px inset #808080;
+  background: #808080;
+}
+
+#minesweeper .mine-cell {
+  width: 30px;
+  height: 30px;
+
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #c0c0c0;
+
+  border: 3px outset #ffffff;
+
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+
+  line-height: 24px;
+
+  cursor: pointer;
+}
+
+#minesweeper .mine-cell.open {
+  background: #c0c0c0;
+  border: 1px solid #808080;
+}
+
+#minesweeper .mine-cell.mine {
+  background: #ff7777;
+  border: 1px solid #808080;
+  font-size: 15px;
+}
+
+#minesweeper .mine-cell.flag {
+  color: #000;
+}
+
+#minesweeper #mine-reset {
+  margin-top: 12px;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  background: #c0c0c0;
+
+  border: 3px outset #ffffff;
+
+  font-family: Arial, sans-serif;
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}

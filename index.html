@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="David Foss — AI Research & Engineering" />
+  <meta name="theme-color" content="#245edb" />
+  <title>David's Computer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="boot" class="boot-screen">
+    <div class="boot-card">
+      <div class="xp-logo" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <div class="boot-name">David's Computer</div>
+      <button id="boot-button" type="button">click to log on</button>
+      <div class="boot-hint">Windows is starting up...</div>
+    </div>
+  </div>
+
+  <main id="desktop" class="desktop" aria-label="Desktop">
+    <div class="desktop-icons" aria-label="Desktop shortcuts">
+      <button class="desktop-icon" data-open="my-documents" type="button">
+        <span class="icon folder"></span>
+        <span>My Documents</span>
+      </button>
+
+      <button class="desktop-icon" data-open="work" type="button">
+        <span class="icon briefcase"></span>
+        <span>Work</span>
+      </button>
+
+      <button class="desktop-icon" data-open="research" type="button">
+        <span class="icon research-icon"></span>
+        <span>Research</span>
+      </button>
+<button class="desktop-icon" data-open="browser" type="button">
+        <span class="icon ie"></span>
+        <span>Internet Explorer</span>
+      </button>
+
+      <button class="desktop-icon" data-open="terminal" type="button">
+        <span class="icon terminal-icon">&gt;_</span>
+        <span>cmd.exe</span>
+      </button>
+
+      <button class="desktop-icon" data-open="winamp" type="button">
+        <span class="icon winamp-icon">⚡</span>
+        <span>Winamp</span>
+      </button>
+
+      <button class="desktop-icon" data-open="minesweeper" type="button">
+        <span class="icon mine-icon">💣</span>
+        <span>Minesweeper</span>
+      </button>
+
+      <button class="desktop-icon" data-open="recycle" type="button">
+        <span class="icon recycle-icon">♻</span>
+        <span>Recycle Bin</span>
+      </button>
+    </div>
+
+    <div class="desktop-caption">
+      <div class="caption-title">David Foss</div>
+      <div class="caption-sub">AI research · ML engineering · Oslo</div>
+    </div>
+
+    <section id="window-layer" class="window-layer" aria-live="polite">
+      <article class="window" id="my-documents" data-title="My Documents" style="--x: 14vw; --y: 10vh; --w: 660px;">
+        <header class="titlebar drag-handle">
+          <div class="title-left"><span class="tiny-folder"></span> My Documents</div>
+          <div class="window-controls">
+            <button data-minimize type="button" aria-label="Minimize">_</button>
+            <button data-maximize type="button" aria-label="Maximize">□</button>
+            <button data-close type="button" aria-label="Close">×</button>
+          </div>
+        </header>
+        <div class="menubar"><span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Tools</span><span>Help</span></div>
+        <div class="toolbar">
+          <button type="button" disabled>← Back</button>
+          <button type="button" disabled>→</button>
+          <button type="button" disabled>🔍 Search</button>
+          <button type="button" disabled>📁 Folders</button>
+        </div>
+        <div class="addressbar"><span>Address</span><div>C:\Documents and Settings\David\My Documents</div></div>
+        <div class="explorer-body">
+          <aside class="explorer-sidebar">
+            <div class="side-card">
+              <h4>File and Folder Tasks</h4>
+              <a href="#" data-open="profile">View system profile</a>
+              <a href="#" data-open="research">Open research archive</a>
+            </div>
+            <div class="side-card">
+              <h4>Other Places</h4>
+              <a href="#" data-open="work">Work</a>
+              <a href="#" data-open="terminal">Command Prompt</a>
+            </div>
+          </aside>
+          <div class="file-grid">
+            <button class="file-item" data-open="profile" type="button"><span class="file-icon doc"></span><strong>About David.txt</strong><small>Text Document</small></button>
+            <button class="file-item" data-open="education" type="button"><span class="file-icon folder"></span><strong>Education</strong><small>File Folder</small></button>
+            <button class="file-item" data-open="work" type="button"><span class="file-icon folder"></span><strong>Work</strong><small>File Folder</small></button>
+            <button class="file-item" data-open="research" type="button"><span class="file-icon folder"></span><strong>Research</strong><small>File Folder</small></button>
+            <button class="file-item" data-open="skills" type="button"><span class="file-icon gear"></span><strong>Stack.ini</strong><small>Configuration Settings</small></button>
+          </div>
+        </div>
+        <footer class="statusbar">5 objects</footer>
+      </article>
+
+      <article class="window small-window" id="profile" data-title="About David.txt" style="--x: 22vw; --y: 15vh; --w: 580px;">
+        <header class="titlebar drag-handle">
+          <div class="title-left">📝 About David.txt - Notepad</div>
+          <div class="window-controls">
+            <button data-minimize type="button">_</button>
+            <button data-maximize type="button">□</button>
+            <button data-close type="button">×</button>
+          </div>
+        </header>
+        <div class="menubar"><span>File</span><span>Edit</span><span>Format</span><span>View</span><span>Help</span></div>
+        <div class="notepad">
+David Foss
+
+MSc in Computer Science / AI from NTNU.
+
+I work on machine learning research and engineering, mostly around
+time-series, evaluation, and ML systems.
+
+Current:
+- AI research at Cognite
+- industrial time-series foundation models
+- forecasting evaluation and multivariate modeling
+
+Previously:
+- ML engineering and data engineering at Norges Bank
+- data science at ReLU NTNU
+
+Based in Oslo, Norway.
+        </div>
+      </article>
+
+      <article class="window small-window" id="education" data-title="Education" style="--x: 25vw; --y: 19vh; --w: 560px;">
+        <header class="titlebar drag-handle">
+          <div class="title-left"><span class="tiny-folder"></span> Education</div>
+          <div class="window-controls">
+            <button data-minimize type="button">_</button>
+            <button data-maximize type="button">□</button>
+            <button data-close type="button">×</button>
+          </div>
+        </header>
+        <div class="folder-list">
+          <div class="detail-row header-row"><span>Name</span><span>Type</span><span>Details</span></div>
+          <div class="detail-row"><span>NTNU</span><span>University</span><span>MSc Computer Science · AI</span></div>
+          <div class="detail-row"><span>Thesis</span><span>Research</span><span>Adaptive optimizer scheduling / evaluation</span></div>
+          <div class="detail-row"><span>Exchange</span><span>University</span><span>University of Catania</span></div>
+        </div>
+      </article>
+
+      <article class="window" id="work" data-title="Work" style="--x: 18vw; --y: 12vh; --w: 760px;">
+        <header class="titlebar drag-handle">
+          <div class="title-left"><span class="tiny-folder"></span> Work</div>
+          <div class="window-controls">
+            <button data-minimize type="button">_</button>
+            <button data-maximize type="button">□</button>
+            <button data-close type="button">×</button>
+          </div>
+        </header>
+        <div class="addressbar"><span>Address</span><div>C:\David\Work</div></div>
+        <div class="folder-list">
+          <div class="detail-row header-row"><span>Name</span><span>Role</span><span>Notes</span></div>
+          <div class="detail-row work-row">
+            <span>Cognite</span>
+            <span>AI Research Intern · 2026</span>
+            <span>Industrial time-series foundation models, evaluation, multivariate modeling, regime shifts, covariates.</span>
+          </div>
+          <div class="detail-row work-row">
+            <span>Norges Bank</span>
+            <span>ML Engineer Intern / Data Engineer · 2025–26</span>
+            <span>Databricks, MLflow/MLOps, internal LLM tooling, pipelines, OAuth, deployment and CI/CD.</span>
+          </div>
+          <div class="detail-row work-row">
+            <span>ReLU NTNU</span>
+            <span>Data Scientist · 2024</span>
+            <span>Day-ahead forecasting for salmon feed planning with temporal validation.</span>
+          </div>
+          <div class="detail-row work-row">
+            <span>Sticos</span>
+            <span>Software Developer Intern · 2024</span>
+            <span>REST services, databases, Angular, Azure SQL.</span>
+          </div>
+          <div class="detail-row work-row">
+            <span>MyWorkout</span>
+            <span>Software Developer Intern · 2023</span>
+            <span>AWS Lambda Strava integration in Kotlin, plus Laravel and Docker/PostgreSQL work.</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="window" id="research" data-title="Research" style="--x: 16vw; --y: 9vh; --w: 760px;">
+        <header class="titlebar drag-handle">
+          <div class="title-left"><span class="tiny-folder"></span> Research</div>
+          <div class="window-controls">
+            <button data-minimize type="button">_</button>
+            <button data-maximize type="button">□</button>
+            <button data-close type="button">×</button>
+          </div>
+        </header>
+        <div class="menubar"><span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Tools</span><span>Help</span></div>
+        <div class="addressbar"><span>Address</span><div>C:\David\Research</div></div>
+        <div class="research-pane">
+          <aside class="research-left">
+            <div class="big-file-icon pdf">PDF</div>
+            <h3>ICONIP_2026.pdf</h3>
+            <p>Adobe Acrobat Document</p>
+            <div class="meta-line">Status: <strong>Coming soon</strong></div>
+          </aside>
+          <div class="research-content">
+            <div class="file-heading">Isolating Feedback Utility in Adaptive Optimizer Scheduling</div>
+            <p>
+              Accepted at ICONIP 2026. The paper studies whether gains from adaptive optimizer
+              scheduling actually come from feedback, using matched open-loop controls to separate
+              control-axis utility from adaptive utility.
+            </p>
+            <dl class="properties">
+              <div><dt>Venue</dt><dd>ICONIP 2026</dd></div>
+              <div><dt>Location</dt><dd>Melbourne, Australia</dd></div>
+              <div><dt>File</dt><dd>papers/iconip-2026.pdf</dd></div>
+              <div><dt>Availability</dt><dd>Coming soon</dd></div>
+            </dl>
+            <button class="xp-button" type="button" disabled>Open PDF (coming soon)</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="window small-window" id="skills" data-title="Stack.ini" style="--x: 28vw; --y: 15vh; --w: 520px;">
+        <header class="titlebar drag-handle">
+          <div class="title-left">⚙ Stack.ini</div>
+          <div class="window-controls">
+            <button data-minimize type="button">_</button>
+            <button data-maximize type="button">□</button>
+            <button data-close type="button">×</button>
+          </div>
+        </header>
+        <div class="notepad ini">
+[research]
+time_series=true
+forecasting=true
+foundation_models=true
+evaluation=true
+
+[ml]
+python=true
+pytorch=true
+xgboost=true
+
+[data_mlops]
+databricks=true
+mlflow=true
+spark=true
+sql=true
+github_actions=true
+
+[systems]
+docker=true
+rest=true
+oauth=true
+ci_cd=true
+        </div>
+      </article>
+
+      <article class="window browser-window" id="browser" data-title="Internet Explorer" style="--x: 11vw; --y: 8vh; --w: 820px;">
+        <header class="titlebar drag-handle">
+          <div class="title-left"><span class="ie-mini">e</span> Internet Explorer</div>
+          <div class="window-controls">
+            <button data-minimize type="button">_</button>
+            <button data-maximize type="button">□</button>
+            <button data-close type="button">×</button>
+          </div>
+        </header>
+        <div class="menubar"><span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Tools</span><span>Help</span></div>
+        <div class="browser-toolbar">
+          <button type="button" disabled>← Back</button>
+          <button type="button" disabled>→ Forward</button>
+          <button type="button" disabled>⟳ Refresh</button>
+          <button type="button" disabled>⌂ Home</button>
+        </div>
+        <div class="addressbar"><span>Address</span><div>http://www.david-foss.local/</div><button type="button">Go</button></div>
+        <div class="webpage">
+          <div class="old-web-header">
+            <div class="old-web-logo">DAVID FOSS</div>
+            <div>personal homepage</div>
+          </div>
+          <div class="old-web-nav">
+            <a href="#" data-open="profile">about</a> |
+            <a href="#" data-open="work">work</a> |
+            <a href="#" data-open="research">research</a> |
+            <a href="#" data-open="terminal">terminal</a>
+          </div>
+          <hr>
+          <p><b>Welcome to my homepage.</b></p>
+          <p>I work with machine learning research and engineering, mostly around time-series, evaluation and ML systems.</p>
+          <table class="old-table">
+            <tr><th>Link</th><th>Status</th></tr>
+            <tr><td><a href="https://github.com/davidkfoss" target="_blank" rel="noopener">GitHub</a></td><td>online</td></tr>
+            <tr><td><a href="https://www.linkedin.com/in/davidkfoss" target="_blank" rel="noopener">LinkedIn</a></td><td>online</td></tr>
+            <tr><td><a href="mailto:david.k.foss@gmail.com">Email</a></td><td>online</td></tr>
+          </table>
+          <div class="visitor-counter">You are visitor <strong>0000042</strong></div>
+          <div class="under-construction">🚧 This page is best viewed in Internet Explorer 6.0 at 1024×768 🚧</div>
+        </div>
+        <footer class="statusbar">Internet</footer>
+      </article>
+
+      <article class="window terminal-window" id="terminal" data-title="C:\WINDOWS\system32\cmd.exe" style="--x: 20vw; --y: 12vh; --w: 720px;">
+        <header class="titlebar drag-handle terminal-title">
+          <div class="title-left">C:\WINDOWS\system32\cmd.exe</div>
+          <div class="window-controls">
+            <button data-minimize type="button">_</button>
+            <button data-maximize type="button">□</button>
+            <button data-close type="button">×</button>
+          </div>
+        </header>
+        <div class="cmd-body" id="cmd-output" aria-live="polite">
+          <div id="cmd-history">Microsoft Windows XP [Version 5.1.2600]
+(C) Copyright 1985-2001 Microsoft Corp.
+
+Type HELP for available commands.
+
+</div>
+          <div class="cmd-line"><span class="cmd-prompt">C:\Documents and Settings\David&gt;</span><span id="cmd-typed"></span><span class="cmd-caret">_</span></div>
+        </div>
+        <input id="cmd-input" class="cmd-input" autocomplete="off" spellcheck="false" aria-label="Command input" />
+      </article>
+
+      <article class="window winamp-window" id="winamp" data-title="Winamp" style="--x: 32vw; --y: 17vh; --w: 320px;">
+        <header class="winamp-title drag-handle">
+          <span>WINAMP</span><span>***</span>
+          <button data-close type="button">×</button>
+        </header>
+        <div class="winamp-display">
+          <div class="track-time" id="track-time">00:00</div>
+          <div class="track-title" id="track-title">01. TIME SERIES FM</div>
+          <div class="spectrum">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+        <div class="winamp-buttons">
+          <button data-prev type="button">|◀</button>
+          <button data-play type="button">▶</button>
+          <button data-pause type="button">Ⅱ</button>
+          <button data-next type="button">▶|</button>
+        </div>
+        <div class="playlist">
+          <button class="track selected" data-track="0" type="button">1. TIME SERIES FM</button>
+          <button class="track" data-track="1" type="button">2. OPEN LOOP CONTROL</button>
+          <button class="track" data-track="2" type="button">3. DATABRICKS NIGHTS</button>
+          <button class="track" data-track="3" type="button">4. MELBOURNE 2026</button>
+        </div>
+      </article>
+
+
+      <article class="window small-window" id="minesweeper" data-title="Minesweeper"
+        style="--x: 28vw; --y: 12vh; --w: 360px;">
+        <header class="titlebar drag-handle">
+          <div class="title-left">💣 Minesweeper</div>
+          <div class="window-controls">
+            <button data-minimize type="button">_</button>
+            <button data-maximize type="button">□</button>
+            <button data-close type="button">×</button>
+          </div>
+        </header>
+      
+        <div class="mine-wrap">
+          <div class="mine-top">
+            <span id="mine-counter">Mines: 015</span>
+            <button id="mine-reset" type="button">🙂</button>
+          </div>
+      
+          <div id="mine-board"></div>
+        </div>
+      </article>
+
+      <article class="window small-window recycle-window" id="recycle" data-title="Recycle Bin" style="--x: 26vw; --y: 15vh; --w: 520px;">
+        <header class="titlebar drag-handle">
+          <div class="title-left">♻ Recycle Bin</div>
+          <div class="window-controls">
+            <button data-minimize type="button">_</button>
+            <button data-maximize type="button">□</button>
+            <button data-close type="button">×</button>
+          </div>
+        </header>
+        <div class="folder-list">
+          <div class="detail-row header-row"><span>Name</span><span>Type</span><span>Date deleted</span></div>
+          <div class="detail-row"><span>final_v2_REAL_final.ipynb</span><span>Jupyter Notebook</span><span>unknown</span></div>
+          <div class="detail-row"><span>baseline_that_didnt_work.py</span><span>Python File</span><span>unknown</span></div>
+          <div class="detail-row"><span>presentation_lastlast.pptx</span><span>PowerPoint</span><span>unknown</span></div>
+          <div class="detail-row"><span>README_old_old.md</span><span>Markdown</span><span>unknown</span></div>
+        </div>
+      </article>
+    </section>
+
+    <div id="msn-toast" class="msn-toast">
+      <div class="msn-head">MSN Messenger</div>
+      <div class="msn-body">
+        <div class="msn-avatar">DF</div>
+        <div><strong>David</strong> has just signed in.<br><small>AI research · Oslo</small></div>
+      </div>
+    </div>
+
+    <footer class="taskbar">
+      <button id="start-button" class="start-button" type="button">
+        <span class="windows-mark"><i></i><i></i><i></i><i></i></span>
+        start
+      </button>
+
+      <div id="task-buttons" class="task-buttons" aria-label="Open windows"></div>
+
+      <div class="tray">
+        <span>🔊</span>
+        <span>📶</span>
+        <time id="task-clock">12:00</time>
+      </div>
+    </footer>
+
+    <section id="start-menu" class="start-menu" aria-hidden="true">
+      <header class="start-user">
+        <div class="user-avatar">DF</div>
+        <strong>David</strong>
+      </header>
+      <div class="start-content">
+        <div class="start-left">
+          <button data-open="browser" type="button"><span class="start-icon ie">e</span><div><strong>Internet Explorer</strong><small>Internet</small></div></button>
+          <button data-open="terminal" type="button"><span class="start-icon cmd">&gt;_</span><div><strong>Command Prompt</strong><small>cmd.exe</small></div></button>
+          <button data-open="winamp" type="button"><span class="start-icon">⚡</span><div><strong>Winamp</strong><small>Media Player</small></div></button>
+          <div class="start-separator"></div>
+          <button data-open="research" type="button"><span class="start-icon">📄</span><div><strong>ICONIP 2026</strong><small>Research</small></div></button>
+        </div>
+        <div class="start-right">
+          <button data-open="my-documents" type="button">📁 My Documents</button>
+          <button data-open="work" type="button">💼 Work</button>
+          <button data-open="research" type="button">🔬 Research</button>
+          <button data-open="skills" type="button">⚙ Control Panel</button>
+          <div class="start-separator"></div>
+          <button data-open="recycle" type="button">♻ Recycle Bin</button>
+        </div>
+      </div>
+      <footer class="start-footer">
+        <button id="logoff" type="button">🔑 Log Off</button>
+        <button id="shutdown" type="button">⏻ Turn Off Computer</button>
+      </footer>
+    </section>
+  </main><script src="script.js"></script>
+</body>
+</html>
