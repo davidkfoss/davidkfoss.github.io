@@ -332,7 +332,8 @@ button,input{font:inherit}
 }
 
 #minesweeper .mine-cell.flag {
-  color: #000;
+  background: #c0c0c0;
+  border: 3px outset #ffffff;
 }
 
 #minesweeper #mine-reset {

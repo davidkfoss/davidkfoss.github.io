@@ -551,8 +551,8 @@
 
     cells.forEach((cell, i) => {
       if (cell.mine) {
-        buttons[i].textContent = "💣";
-        buttons[i].classList.add("mine");
+        buttons[i].textContent = "⚑";
+        buttons[i].classList.add("flag");
       }
     });
 
