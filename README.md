@@ -3,7 +3,7 @@
 A fully interactive fake early-2000s personal computer used as a portfolio.
 
 🖥️ Open here:
-https://davidfoss.github.io/
+https://davidkfoss.github.io/
 
 ## Included
 
