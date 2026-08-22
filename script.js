@@ -489,82 +489,63 @@
       cell.flagged
     ) return;
 
-
     cell.opened = true;
 
     const button = buttons[i];
-
     button.classList.add("open");
 
-
     if (cell.mine) {
-
       button.textContent = "💣";
       button.classList.add("mine");
 
       resetButton.textContent = "😵";
-
       gameOver = true;
 
-
       cells.forEach((c, index) => {
-
         if (c.mine) {
           buttons[index].textContent = "💣";
           buttons[index].classList.add("mine");
         }
-
       });
 
-
       return;
     }
-
 
     if (cell.count > 0) {
-
       button.textContent = cell.count;
-      checkWin();
-      
-      return;
+    } else {
+      const x = i % size;
+      const y = Math.floor(i / size);
+
+      directions.forEach(([dx, dy]) => {
+        const nx = x + dx;
+        const ny = y + dy;
+
+        if (
+          nx >= 0 &&
+          ny >= 0 &&
+          nx < size &&
+          ny < size
+        ) {
+          reveal(ny * size + nx);
+        }
+      });
     }
 
-
-    const x = i % size;
-    const y = Math.floor(i / size);
-
-
-    directions.forEach(([dx, dy]) => {
-
-      const nx = x + dx;
-      const ny = y + dy;
-
-
-      if (
-        nx >= 0 &&
-        ny >= 0 &&
-        nx < size &&
-        ny < size
-      ) {
-        reveal(
-          ny * size + nx
-        );
-      }
-
-    });
-
-
+    // only check once after this reveal completes
     checkWin();
   }
 
 
 
   function checkWin() {
-    const cleared = cells.every(
+    if (gameOver) return;
+
+    const won = cells.every(
       cell => cell.mine || cell.opened
     );
 
-    if (!cleared) return;
+    if (!won) return;
 
     gameOver = true;
 
